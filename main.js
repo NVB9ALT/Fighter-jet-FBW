@@ -113,14 +113,14 @@ assignControls = function () {
    if (geofs.aircraft.instance.id == 7) {
 geofs.aircraft.instance.definition.parts[7].animations[0].value = "outerAveragePitch"
 geofs.aircraft.instance.definition.parts[8].animations[0].value = "outerAveragePitch"
-geofs.aircraft.instance.definition.parts[7].animations[1].value = "computedRoll"
-geofs.aircraft.instance.definition.parts[8].animations[1].value = "computedRoll"
+geofs.aircraft.instance.definition.parts[7].animations[1].value = "outerAverageRoll"
+geofs.aircraft.instance.definition.parts[8].animations[1].value = "outerAverageRoll"
    }
 	if (geofs.aircraft.instance.id == 2857) {
 geofs.aircraft.instance.definition.parts[14].animations[0].value = "outerAveragePitch"
 geofs.aircraft.instance.definition.parts[15].animations[0].value = "outerAveragePitch"
-geofs.aircraft.instance.definition.parts[14].animations[1].value = "computedRoll"
-geofs.aircraft.instance.definition.parts[15].animations[1].value = "computedRoll"
+geofs.aircraft.instance.definition.parts[14].animations[1].value = "outerAverageRoll"
+geofs.aircraft.instance.definition.parts[15].animations[1].value = "outerAverageRoll"
 	}
 }
 FBWint = setInterval(function(){
