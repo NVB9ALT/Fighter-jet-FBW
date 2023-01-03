@@ -110,7 +110,7 @@ movingAvg = function (array, countBefore, countAfter) {
   return result;
 }
 assignControls = function () {
-   if (geofs.aircraft.instance.id == 7) {
+   if (geofs.aircraft.instance.id == 7 && geofs.addonAircraft.isMiG21 != 1) {
 geofs.aircraft.instance.definition.parts[7].animations[0].value = "outerAveragePitch"
 geofs.aircraft.instance.definition.parts[8].animations[0].value = "outerAveragePitch"
 geofs.aircraft.instance.definition.parts[7].animations[1].value = "outerAverageRoll"
