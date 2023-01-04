@@ -25,8 +25,8 @@ cobraInt = setInterval(function(){cobraButton()},100)
 //Average pull rate: (geofs.animation.values.pitchrate + geofs.animation.values.turnrate) / 2
 //clearInterval(FBWint)
 let tiltToHold = 0;
-let rollTohold = 0;
 let deadZone = 0.005;
+let rollTohold = 0;
 let pitchCenter = 0;
 let pitchStage1 = 0;
 let computingPitch = 0;
@@ -50,7 +50,8 @@ if (normalizedAoA > 1 && geofs.animation.values.cobraMode == 0) {
 } else if (normalizedG > 1 && geofs.animation.values.cobraMode == 0) {
    geofs.animation.values.computedPitch = geofs.animation.values.computedPitch - 0.05
 } else {
-   geofs.animation.values.computedPitch = input
+//This adjust sensitivity and trim automatically, to keep level flight at centered controls and max AoA/9G at maximum up elevator regardless of airspeed.
+   geofs.animation.values.computedPitch = (input / (geofs.animation.values.kcas/150)) - (geofs.animation.values.kcas/3000)
 }
    }
 }
@@ -60,13 +61,10 @@ computeRoll = function() {
 geofs.animation.values.computedRoll = inputR
    }
 }
+let rollInputs = [0, 0, 0, 0, 0, 0, 0];
 let pitchInputs = [0, 0, 0, 0, 0, 0, 0];
 geofs.animation.values.averagePitch = null;
 geofs.animation.values.outerAveragePitch = null;
-pushInputs = function() {
-  pitchInputs.push(geofs.animation.values.computedPitch);
-}
-let rollInputs = [0, 0, 0, 0, 0, 0, 0];
 geofs.animation.values.averageRoll = null;
 geofs.animation.values.outerAverageRoll = null;
 pushInputs = function() {
@@ -78,8 +76,8 @@ computeOutputs = function() {
   var rollcheck = movingAvg(rollInputs, 2, 2)
   geofs.animation.values.averagePitch = pitchcheck[pitchcheck.length - 3]
    geofs.animation.values.averageRoll = rollcheck[rollcheck.length - 3];
-  geofs.animation.values.outerAverageRoll = clamp(geofs.animation.values.averageRoll / (geofs.animation.values.kias / 100), -1, 1);
-  geofs.animation.values.outerAveragePitch = clamp(geofs.animation.values.averagePitch / (geofs.animation.values.kias / 200), -1, 1);
+  geofs.animation.values.outerAverageRoll = clamp(geofs.animation.values.averageRoll, -1, 1);
+  geofs.animation.values.outerAveragePitch = clamp(geofs.animation.values.averagePitch / 1, -1, 1);
 }
 movingAvg = function (array, countBefore, countAfter) {
   if (countAfter == undefined) countAfter = 0;
@@ -95,8 +93,8 @@ assignControls = function () {
    if (geofs.aircraft.instance.id == 7 && geofs.addonAircraft.isMiG21 != 1) {
 geofs.aircraft.instance.definition.parts[7].animations[0].value = "outerAveragePitch"
 geofs.aircraft.instance.definition.parts[8].animations[0].value = "outerAveragePitch"
-geofs.aircraft.instance.definition.parts[7].animations[1].value = "outerAverageRoll"
-geofs.aircraft.instance.definition.parts[8].animations[1].value = "outerAverageRoll"
+//geofs.aircraft.instance.definition.parts[7].animations[1].value = "outerAverageRoll"
+//geofs.aircraft.instance.definition.parts[8].animations[1].value = "outerAverageRoll"
    }
 	if (geofs.aircraft.instance.id == 2857) {
 geofs.aircraft.instance.definition.parts[14].animations[0].value = "outerAveragePitch"
