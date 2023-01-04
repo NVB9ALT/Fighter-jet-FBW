@@ -25,6 +25,7 @@ cobraInt = setInterval(function(){cobraButton()},100)
 //Average pull rate: (geofs.animation.values.pitchrate + geofs.animation.values.turnrate) / 2
 //clearInterval(FBWint)
 let tiltToHold = 0;
+let rollTohold = 0;
 let deadZone = 0.005;
 let pitchCenter = 0;
 let pitchStage1 = 0;
@@ -55,27 +56,8 @@ if (normalizedAoA > 1 && geofs.animation.values.cobraMode == 0) {
 }
 computeRoll = function() {
    inputR = geofs.animation.values.roll
-if (geofs.pause == 0) {
-    if (geofs.animation.values.groundContact == 0) {
-  //roll stabilization from input
-  if (rollTohold <= 30 && rollTohold >= -30) {
-    rollTohold = rollTohold - geofs.animation.values.roll;
-    geofs.animation.values.computedRoll = clamp((geofs.animation.values.aroll - rollTohold) / 15, -1, 1);
-  }
-  else {
-    if (geofs.animation.values.aroll >= 0) {
-      rollTohold = 29;
-      geofs.animation.values.computedRoll = clamp((geofs.animation.values.aroll - rollTohold) / 15, -1, 1)
-    }
-    if (geofs.animation.values.aroll <= 0) {
-      rollTohold = -29;
-      geofs.animation.values.computedRoll = clamp((geofs.animation.values.aroll - rollTohold) / 15, -1, 1)
-    }
-  }
-  }
-  else {
-    geofs.animation.values.computedRoll = inputR
-  }
+   if (geofs.pause == 0) {
+geofs.animation.values.computedRoll = inputR
    }
 }
 let pitchInputs = [0, 0, 0, 0, 0, 0, 0];
