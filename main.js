@@ -74,7 +74,7 @@ if (geofs.pause == 0) {
   }
   }
   else {
-    geofs.animation.values.computedRoll = input
+    geofs.animation.values.computedRoll = inputR
   }
    }
 }
