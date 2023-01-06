@@ -95,6 +95,11 @@ geofs.aircraft.instance.definition.parts[7].animations[0].value = "outerAverageP
 geofs.aircraft.instance.definition.parts[8].animations[0].value = "outerAveragePitch"
 //geofs.aircraft.instance.definition.parts[7].animations[1].value = "outerAverageRoll"
 //geofs.aircraft.instance.definition.parts[8].animations[1].value = "outerAverageRoll"
+   } else if (geofs.aircraft.instance.id == 7 && geofs.addonAircraft.isMiG21 == 1) {
+geofs.aircraft.instance.definition.parts[7].animations[0].value = "pitch"
+geofs.aircraft.instance.definition.parts[8].animations[0].value = "pitch"
+//geofs.aircraft.instance.definition.parts[7].animations[1].value = "roll"
+//geofs.aircraft.instance.definition.parts[8].animations[1].value = "roll"
    }
 	if (geofs.aircraft.instance.id == 2857) {
 geofs.aircraft.instance.definition.parts[14].animations[0].value = "outerAveragePitch"
