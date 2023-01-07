@@ -51,7 +51,7 @@ if (normalizedAoA > 1 && geofs.animation.values.cobraMode == 0) {
    geofs.animation.values.computedPitch = geofs.animation.values.computedPitch - 0.05
 } else {
 //This adjust sensitivity and trim automatically, to keep level flight at centered controls and max AoA/9G at maximum up elevator regardless of airspeed.
-   geofs.animation.values.computedPitch = (input / (geofs.animation.values.kcas/150)) - (geofs.animation.values.kcas/3000)
+   geofs.animation.values.computedPitch = (input / (geofs.animation.values.kcas/150)) - (geofs.animation.values.kcas/5000)
 }
    }
 }
