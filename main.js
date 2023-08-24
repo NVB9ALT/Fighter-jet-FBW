@@ -5,20 +5,6 @@ document.addEventListener("keydown", function(e) {
 geofs.animation.values.cobraMode == 0 ? geofs.animation.values.cobraMode = 1 : geofs.animation.values.cobraMode = 0
    }
 })
-cobraButton = function() {
-   if (geofs.animation.values.cobraMode == 1) {
-if (geofs.aircraft.instance.id == 2857) {
-   geofs.aircraft.instance.definition.parts[14].stalls = true
-   geofs.aircraft.instance.definition.parts[15].stalls = true
-}
-	} else {
-if (geofs.aircraft.instance.id == 2857) {
-   geofs.aircraft.instance.definition.parts[14].stalls = false
-   geofs.aircraft.instance.definition.parts[15].stalls = false
-}
-	}
-}
-cobraInt = setInterval(function(){cobraButton()},100)
 
 
 //Fighter jet FBW
@@ -51,7 +37,7 @@ if (normalizedAoA > 1 && geofs.animation.values.cobraMode == 0) {
    geofs.animation.values.computedPitch = geofs.animation.values.computedPitch - 0.02
 } else {
 //This adjust sensitivity and trim automatically, to keep level flight at centered controls and max AoA/9G at maximum up elevator regardless of airspeed.
-   geofs.animation.values.computedPitch = (input / (geofs.animation.values.kcas/100)) - (geofs.animation.values.kcas/6000)
+   geofs.animation.values.computedPitch = (input / (geofs.animation.values.kias/80)) - (geofs.animation.values.kias/6000)
 }
    }
 }
